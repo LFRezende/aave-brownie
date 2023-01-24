@@ -3,8 +3,9 @@ The focus and development of the project encompass the following:
 
 
 1. Swaping ETH for WETH 
-2. Depositing ETH into the contract of WETHGateway.
-3. Withdrawing the ETH deposited.
+2. Depositing WETH into the contract of WETHGateway.
+3. Purchase another token with our ETH collateral
+4. Withdrawing the ETH deposited.
 
 ## Resources utilized
 
