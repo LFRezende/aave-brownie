@@ -6,7 +6,7 @@ OTHER_CHAINS = ["mainnet-fork", "goerli"]
 
 def getAccount(index=None, id=None):
     if index:
-        return accounts[id]
+        return accounts[index]
     if id:
         account = accounts.load(id)
         return account
