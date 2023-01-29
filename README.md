@@ -30,15 +30,16 @@ By utilizing the IWeth interface, provided by @Patrick_Alpha_C, we may import th
 
 We then deposit the desired amount into the contract. It will automatically make us withdraw the same amounth deposited, but in Wrapped Tokens.
 
-### 2. Depositing WETH in the Lending Pool of AAVE
+### 2. Depositing WETH into the Lending Pool of AAVE
 
 After swaping ETH for WETH via the get_weth function, we need to access the lending pool contract for AAVE for depositing WETH.
 
 The Lending Pool Contract for AAVE allows us to make actions such as deposits, withdraws of tokens and so on.
 
 Grabbing the address for the Lending Pool in the AAVE documentation, for mainnet and goerli, as well as the interface for 
-this contract, we may proceed.
+this contract, we may proceed, since the interface will compile down as an ABI would.
 
+But the issue here is that the Lending Pool address for AAVE depends directly of a lot of factors of the respective market we're working with. What we'll use instead is an interface for a contract provided by AAVE, called "Lending Pool Address Provider", where it will give us the correct address for the desired lending pool. So, by grabbing the interface for this, we may proceed.
 
 
 
