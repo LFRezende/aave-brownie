@@ -41,6 +41,6 @@ this contract, we may proceed, since the interface will compile down as an ABI w
 
 But the issue here is that the Lending Pool address for AAVE depends directly of a lot of factors of the respective market we're working with. What we'll use instead is an interface for a contract provided by AAVE, called "Lending Pool Address Provider", where it will give us the correct address for the desired lending pool. So, by grabbing the interface for this, we may proceed.
 
-
+Remember the addresses for the lending pool addresses provider contracts are avaiable in AAVE documentation.
 
 
