@@ -7,7 +7,6 @@ def get_weth():
     Swaps ETH for WETH by minting the last one.
     """
     account = getAccount()
-    print(f">>>>>>>>>>>>>>>>>>>>>>>>>>> {account}")
     # Using the interface to establish contact with the WETHGateway 
     weth = interface.IWeth(config["networks"][network.show_active()]["wethAddress"])
     tx = weth.deposit({"from": account, "value": 0.1* 10**18})
