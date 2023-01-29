@@ -43,4 +43,12 @@ But the issue here is that the Lending Pool address for AAVE depends directly of
 
 Remember the addresses for the lending pool addresses provider contracts are avaiable in AAVE documentation.
 
+Also remember not to attempt this on a mainnet-fork with you do not have enough funds in your ethereum wallet on real mainnet.
+
+Now, for the actual depositing, we must first APPROVE the deposit of our ERC-20 token to begin with.
+
+Since we wish to approve the transfer of our erc20 token, we must have access to the function APPROVE of the contract.
+Therefore, we need to interact with it - which translates to grabbing the interface for the contract and its address.
+
+
 

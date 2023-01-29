@@ -8,6 +8,7 @@ def main():
     erc20_address = config["networks"][network.show_active()]["wethAddress"]
     if network.show_active() in OTHER_CHAINS:
         get_weth()
+    lending_pool = get_lending_pool()
 
 
 def get_lending_pool():
@@ -19,3 +20,7 @@ def get_lending_pool():
     # Remapped Interface and dependencies via - organization/repo@version and compiler/solc/remappings ..."@... = ..."
     lending_pool = interface.ILendingPool(lending_pool_address)
     return lending_pool
+
+
+def approve_erc20():
+    

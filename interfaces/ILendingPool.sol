@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: agpl-3.0
 pragma solidity 0.6.12;
 pragma experimental ABIEncoderV2;
-
+// The imports were reorganized so the mappings matched github in the .YAML file.
 import {ILendingPoolAddressesProvider} from "@aave/contracts/interfaces/ILendingPoolAddressesProvider.sol";
 import {DataTypes} from "@aave/contracts/protocol/libraries/types/DataTypes.sol";
 
