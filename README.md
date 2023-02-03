@@ -26,6 +26,8 @@ The focus and development of the project encompass the following:
 
 At first, we need to swap ETH for WETH. We may do so via establishing connection between our contract and the WrappedETH smart contract - the ERC20 version of ETH, or WETH.
 
+This is important since the Lending Pool of AAVE does not support non ERC-20 tokens in the contract.
+
 By utilizing the IWeth interface, provided by @Patrick_Alpha_C, we may import the contract address for WETH and use the interface function from brownie. The address is mapped by the brownie-config file, depending on the network (goerli or mainnet-fork).
 
 We then deposit the desired amount into the contract. It will automatically make us withdraw the same amounth deposited, but in Wrapped Tokens.
