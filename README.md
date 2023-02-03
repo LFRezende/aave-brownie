@@ -41,14 +41,16 @@ this contract, we may proceed, since the interface will compile down as an ABI w
 
 But the issue here is that the Lending Pool address for AAVE depends directly of a lot of factors of the respective market we're working with. What we'll use instead is an interface for a contract provided by AAVE, called "Lending Pool Address Provider", where it will give us the correct address for the desired lending pool. So, by grabbing the interface for this, we may proceed.
 
-Remember the addresses for the lending pool addresses provider contracts are avaiable in AAVE documentation.
+Remember the addresses for the lending pool addresses provider contracts are available in AAVE's documentation.
 
-Also remember not to attempt this on a mainnet-fork with you do not have enough funds in your ethereum wallet on real mainnet.
+Also remember not to attempt this on a mainnet-fork if you do not have enough funds in your ethereum wallet on real mainnet.
 
 Now, for the actual depositing, we must first APPROVE the deposit of our ERC-20 token to begin with.
 
 Since we wish to approve the transfer of our erc20 token, we must have access to the function APPROVE of the contract.
 Therefore, we need to interact with it - which translates to grabbing the interface (IERC20.sol) for the contract and its address.
+
+Finally, via 
 
 
 

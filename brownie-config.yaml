@@ -2,7 +2,7 @@ wallets:
   from_key: ${PRIVATE_KEY}
 dotenv: .env
 networks:
-  default: goerli
+  default: mainnet-fork
   goerli:
     wethAddress: '0xCCB14936C2E000ED8393A571D15A2672537838Ad'
     lending_pool_addresses_provider: '0x5E52dEc931FFb32f609681B8438A51c675cc232d'
