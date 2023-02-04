@@ -29,9 +29,11 @@ def main():
     # ^^ the deposit function
     borrow, debt = getAccountData(lending_pool, account)
     # We now wish to borrow some DAI
-    dai_eth_pricefeed_address = config(
-        ["networks"][network.show_active()]["dai_eth_pricefeed_address"]
-    )
+    # Always remember: config has no parenthesis!
+    dai_eth_pricefeed_address = config["networks"][network.show_active()][
+        "dai_eth_pricefeed_address"
+    ]
+
     dai_eth_price = get_dai_eth_price(dai_eth_pricefeed_address)
 
 
@@ -97,5 +99,6 @@ def get_dai_eth_price(dai_eth_pricefeed_address):
     interacts with it via the AggregatorV3Interface in the interfaces library of Brownie.
     """
     dai_eth_pricefeed = interface.AggregatorV3Interface(dai_eth_pricefeed_address)
-    dai_eth_price = dai_eth_pricefeed.latestRoundData()[1]
-    return dai_eth_price
+    dai_eth_price = Web3.fromWei(dai_eth_pricefeed.latestRoundData()[1], "ether")
+    print(f"The current price of the asset is:  {dai_eth_price:.8f} ETH.")
+    return float(dai_eth_price)
