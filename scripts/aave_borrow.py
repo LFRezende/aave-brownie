@@ -91,6 +91,11 @@ def getAccountData(lending_pool, account):
 
 
 def get_dai_eth_price(dai_eth_pricefeed_address):
+    """
+    Interacts with the contract providing the DAI-ETH conversion rate.
+    Since no imports are available due to the Lending Pool contract already being deployed, the function
+    interacts with it via the AggregatorV3Interface in the interfaces library of Brownie.
+    """
     dai_eth_pricefeed = interface.AggregatorV3Interface(dai_eth_pricefeed_address)
     dai_eth_price = dai_eth_pricefeed.latestRoundData()[1]
     return dai_eth_price
