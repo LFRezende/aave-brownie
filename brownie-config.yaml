@@ -7,13 +7,19 @@ networks:
     wethAddress: '0xCCB14936C2E000ED8393A571D15A2672537838Ad'
     lending_pool_addresses_provider: '0x5E52dEc931FFb32f609681B8438A51c675cc232d'
     dai_eth_pricefeed_address: '0x0d79df66BE487753B02D015Fb622DED7f0E9798d'
+    dai_token: ''
   mainnet-fork:
     wethAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
     lending_pool_addresses_provider: '0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5'
     dai_eth_pricefeed_address: '0x773616E4d11A78F511299002da57A0a94577F1f4'
+    dai_token: '0x6B175474E89094C44Da98b954EedeAC495271d0F'
 dependencies:
   - aave/protocol-v2@1.0.1
 compiler:
   solc:
     remappings:
     - '@aave=aave/protocol-v2@1.0.1'
+riskFactor:
+  risky: 0.95
+  medium: 0.75
+  safe: 0.5

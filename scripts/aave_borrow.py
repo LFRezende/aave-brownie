@@ -4,6 +4,7 @@ from scripts.get_weth import get_weth
 from web3 import Web3
 
 AMOUNT = Web3.toWei(0.001, "ether")
+riskFactor = "risky"
 
 
 def main():
@@ -33,8 +34,23 @@ def main():
     dai_eth_pricefeed_address = config["networks"][network.show_active()][
         "dai_eth_pricefeed_address"
     ]
-
     dai_eth_price = get_dai_eth_price(dai_eth_pricefeed_address)
+    # Let's borrow some DAI
+    amount_to_borrow = (1 / dai_eth_price) * borrow * safety(riskFactor)
+    print(f"We're now going to borrow {amount_to_borrow:.5f} DAI!")
+    # Borrow function requires the address of the token and the amount (IN WEI!!! of the TOKEN!!)
+    dai_address = config["networks"][network.show_active()]["dai_token"]
+    # borrow receives ADDRESS, AMOUNT IN WEI, INTEREST RATE (1 STABLE 2 VAR), REFCODE (DEP), ON BEHALF OF
+    borrowTx = lending_pool.borrow(
+        dai_address,
+        Web3.toWei(amount_to_borrow, "ether"),
+        1,
+        0,
+        account.address,
+        {"from": account},
+    )
+    borrowTx.wait(1)
+    getAccountData(lending_pool, account)
 
 
 def get_lending_pool():
@@ -102,3 +118,7 @@ def get_dai_eth_price(dai_eth_pricefeed_address):
     dai_eth_price = Web3.fromWei(dai_eth_pricefeed.latestRoundData()[1], "ether")
     print(f"The current price of the asset is:  {dai_eth_price:.8f} ETH.")
     return float(dai_eth_price)
+
+
+def safety(riskFactor):
+    return config["riskFactor"][riskFactor]
