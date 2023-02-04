@@ -51,6 +51,8 @@ def main():
     )
     borrowTx.wait(1)
     getAccountData(lending_pool, account)
+    repay_all(AMOUNT, lending_pool, account)
+    print("All done, baby")
 
 
 def get_lending_pool():
@@ -75,7 +77,7 @@ def approve_erc20(amount, spender, erc20_address, account):
     print(erc20_address)
     erc20 = interface.IERC20(erc20_address)
     print(erc20)
-    # approve spender to spent amount, I sign it - give its blessing.
+    # approve spender to spend amount, I sign it - give its blessing.
     tx = erc20.approve(spender, amount, {"from": account})
     tx.wait(1)  # always wait a block after changing the blockchain
     print(tx)
@@ -122,3 +124,20 @@ def get_dai_eth_price(dai_eth_pricefeed_address):
 
 def safety(riskFactor):
     return config["riskFactor"][riskFactor]
+
+
+def repay_all(amount, lending_pool, account):
+    approve_erc20(
+        Web3.toWei(amount, "ether"),
+        lending_pool,
+        config["networks"][network.show_active()]["dai_token"],
+        account,
+    )
+    repayTx = lending_pool.repay(
+        config["networks"][network.show_active()]["dai_token"],
+        amount,
+        1,
+        account.address,
+        {"from": account},
+    )
+    repayTx.wait(1)
