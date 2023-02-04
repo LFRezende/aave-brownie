@@ -6,9 +6,11 @@ networks:
   goerli:
     wethAddress: '0xCCB14936C2E000ED8393A571D15A2672537838Ad'
     lending_pool_addresses_provider: '0x5E52dEc931FFb32f609681B8438A51c675cc232d'
+    dai_eth_pricefeed_address: 
   mainnet-fork:
     wethAddress: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2'
     lending_pool_addresses_provider: '0xB53C1a33016B2DC2fF3653530bfF1848a515c8c5'
+    dai_eth_pricefeed_address: 
 dependencies:
   - aave/protocol-v2@1.0.1
 compiler:

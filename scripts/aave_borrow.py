@@ -27,6 +27,10 @@ def main():
     tx.wait(1)
     print(">>> Deposit finalized!")
     # ^^ the deposit function
+    borrow, debt = getAccountData(lending_pool, account)
+    # We now wish to borrow some DAI
+    dai_eth_pricefeed_address = config(["networks"][network.show_active()]["dai_eth_pricefeed_address"])
+    dai_eth_price = get_dai_eth_price(dai_eth_pricefeed_address)
 
 
 def get_lending_pool():
@@ -57,3 +61,32 @@ def approve_erc20(amount, spender, erc20_address, account):
     print(tx)
     print(">>> Request Approved! <<<")
     return tx
+
+
+# It is important to know certain data related to your assets.
+# getUserAccountData returns a lot of stuff -> the collateral in eth,
+# the debt in eth, how much you may still borrow, current liquidation threshold,
+#
+def getAccountData(lending_pool, account):
+    """
+    Return the data of the user while utilizing the Lending Pool
+    """
+    (
+        collateral,
+        debt,
+        borrowable,
+        threshold,
+        ltv,
+        health,
+    ) = lending_pool.getUserAccountData(account.address)
+    collateral = Web3.fromWei(collateral, "ether")
+    debt = Web3.fromWei(debt, "ether")
+    borrowable = Web3.fromWei(borrowable, "ether")
+    print(f"Current amount deposited worth in ETH: {collateral}.")
+    print(f"Current amount in debt worth in ETH: {debt}.")
+    print(f"Current amount borrowable worth in ETH: {borrowable}.")
+    return (float(borrowable), float(debt))
+
+
+def get_dai_eth_price(dai_eth_pricefeed_address):
+    
