@@ -29,7 +29,9 @@ def main():
     # ^^ the deposit function
     borrow, debt = getAccountData(lending_pool, account)
     # We now wish to borrow some DAI
-    dai_eth_pricefeed_address = config(["networks"][network.show_active()]["dai_eth_pricefeed_address"])
+    dai_eth_pricefeed_address = config(
+        ["networks"][network.show_active()]["dai_eth_pricefeed_address"]
+    )
     dai_eth_price = get_dai_eth_price(dai_eth_pricefeed_address)
 
 
@@ -89,4 +91,6 @@ def getAccountData(lending_pool, account):
 
 
 def get_dai_eth_price(dai_eth_pricefeed_address):
-    
+    dai_eth_pricefeed = interface.AggregatorV3Interface(dai_eth_pricefeed_address)
+    dai_eth_price = dai_eth_pricefeed.latestRoundData()[1]
+    return dai_eth_price
